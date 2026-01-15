@@ -47,18 +47,19 @@ pipeline {
         always {
             cleanWs()
         }
+    }
         success {
-            emailext(
+            mail(
+                to: "faithizebhor@gmail.com",
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: "The build ${env.BUILD_URL} completed successfully.",
-                to: "faithizebhor@gmail.com"
+                body: "The build ${env.BUILD_URL} completed successfully."
             )
         }
         failure {
             emailext(
+                to: "faithizebhor@gmail.com",
                 subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: "The build ${env.BUILD_URL} failed. Please check the logs.",
-                to: "faithizebhor@gmail.com"
+                body: "The build ${env.BUILD_URL} failed. Please check the logs."
             )
         }
     }
